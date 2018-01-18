@@ -15,8 +15,8 @@ Modes:
 
 2. ***Theremin mode* (buzzer at pins 5-7):** Have the sensor face a wall at the distance of 50–100 cm, and it will generate a steady pitch. Get it closer to the wall and the pitch will increase. Get it further away from the wall and the pitch will decrease.
 
-## BowSaber 2.0
-Control a WS2812B LED strip so that it flashes rainbow color (better than a lightsaber) and blinks when a tilt sensor receives a fast physical movement.
+## LedStrip 2.0
+Control a WS2812B LED strip so that it flashes rainbow color and blinks when a tilt sensor receives a fast physical movement.
 
 What you'll need:
 * Arduino Nano
