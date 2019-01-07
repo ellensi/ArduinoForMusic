@@ -2,7 +2,8 @@ import RPi.GPIO as GPIO
 import fluidsynth
 import time
 
-SENSORS = [ 2,3,17,27,22,10,9,11,6,13,19,26 ]
+#SENSORS = [ 2,3,17,27,22,10,9,11,6,13,19,26 ]
+SENSORS = [ 26,19,13,6,11,9,10,22,27,17,3,2 ]
 
 GPIO.setmode(GPIO.BCM)
 for sensor in SENSORS:
@@ -21,9 +22,12 @@ for line in tone_file:
     tone = []
     for t in l:
         tone.append(int(t))
+    tone[1] = tone[2]
+    tone[11] = tone[10]
     tone_list.append(tone)
 row = -1
 changechordtime = time.time()
+playtonic = True
 
 fs = fluidsynth.Synth()
 fs.start('alsa')
@@ -41,8 +45,12 @@ while 1:
                 if currenttime - changechordtime > 0.5:
                     row = (row + 1) % len(tone_list)
                     changechordtime = currenttime
+                    playtonic = True
+                else:
+                    playtonic = False
                 #print("Change chord")
-            a = fs.noteon(0, tone_list[row][i], 127)
+            if playtonic or i > 0:
+                fs.noteon(0, tone_list[row][i], 127)
         prev[i] = reading
     time.sleep(0.01)
 
